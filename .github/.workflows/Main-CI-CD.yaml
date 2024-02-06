@@ -1,0 +1,24 @@
+name: CI & CD for shop
+on: ['push']
+
+jobs:
+    simple_CI:
+      name: Django CI
+      runs-on: ubuntu-latest
+      steps:
+          - name: Checkout code
+            uses: actions/checkout@v4
+          - name: up the container
+            run: docker-compose up -d
+          - name: run tests
+            run:  docker exec server bash -c "python3 manage.py test"
+    simple_CD:
+      name: Django CD
+      runs-on: ubuntu-latest
+      needs:
+        - simple_CI
+      steps:
+        - name: echo sth
+        - run: echo "B"
+      
+      
