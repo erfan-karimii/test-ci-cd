@@ -6,12 +6,14 @@ jobs:
       name: Django CI
       runs-on: ubuntu-latest
       steps:
-          - name: Checkout code
-            uses: actions/checkout@v4
-          - name: up the container
-            run: docker-compose up -d
-          - name: run tests
-            run:  docker exec server bash -c "python3 manage.py test"
+          - name: testing purpose
+            uses: echo "B"
+          # - name: Checkout code
+          #   uses: actions/checkout@v4
+          # - name: up the container
+          #   run: docker-compose up -d
+          # - name: run tests
+          #   run:  docker exec server bash -c "python3 manage.py test"
     simple_CD:
       name: Django CD
       needs:
@@ -35,8 +37,10 @@ jobs:
               LogLevel ERROR
               StrictHostKeyChecking no
             END
+        - name: whereami
+          run: pwd && ls 
         - name: Run Deploy
           run: |
-            ssh target "git pull && docker-compose build && docker-compose up -d --forece-recreate"
+            ssh target "cd test-ci-cd && docker-compose down && git pull && docker-compose build && docker-compose up -d --forece-recreate"
 
       
