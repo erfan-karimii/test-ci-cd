@@ -37,6 +37,6 @@ jobs:
             END
         - name: Run Deploy
           run: |
-            ssh target "docker-compose down && git pull && docker-compose build && docker-compose up -d --forece-recreate"
+            ssh target "git pull && docker-compose build && docker-compose up -d --forece-recreate"
 
       
