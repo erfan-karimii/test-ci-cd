@@ -38,7 +38,7 @@ jobs:
               StrictHostKeyChecking no
             END
         - name: whereami
-          run: pwd && ls 
+          run: pwd
         - name: Run Deploy
           run: |
             ssh target "cd test-ci-cd && docker-compose down && git pull && docker-compose build && docker-compose up -d --forece-recreate"
