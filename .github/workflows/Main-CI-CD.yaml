@@ -37,8 +37,6 @@ jobs:
               LogLevel ERROR
               StrictHostKeyChecking no
             END
-        - name: whereami
-          run: pwd && ls 
         - name: Run Deploy
           run: |
             ssh target "cd test-ci-cd && docker-compose down && git pull && docker-compose build && docker-compose up -d --forece-recreate"
