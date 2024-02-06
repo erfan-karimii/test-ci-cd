@@ -11,7 +11,7 @@ jobs:
           - name: up the container
             run: docker-compose up -d
           - name: run tests
-            run:  docker exec server bash -c "python3 frobshop/manage.py test"
+            run:  docker exec server bash -c "cd frobshop && python3 manage.py test"
     simple_CD:
       name: Django CD
       needs:
