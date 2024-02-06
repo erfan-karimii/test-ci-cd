@@ -6,14 +6,12 @@ jobs:
       name: Django CI
       runs-on: ubuntu-latest
       steps:
-          - name: testing purpose
-            run: echo "B"
-          # - name: Checkout code
-          #   uses: actions/checkout@v4
-          # - name: up the container
-          #   run: docker-compose up -d
-          # - name: run tests
-          #   run:  docker exec server bash -c "python3 manage.py test"
+          - name: Checkout code
+            uses: actions/checkout@v4
+          - name: up the container
+            run: docker-compose up -d
+          - name: run tests
+            run:  docker exec server bash -c "python3 manage.py test"
     simple_CD:
       name: Django CD
       needs:
