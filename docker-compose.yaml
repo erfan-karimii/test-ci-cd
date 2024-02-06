@@ -25,3 +25,7 @@ services:
       - media_volume:/home/app/media
     depends_on:
       - server
+
+volumes:
+  static_volume:
+  media_volume:
