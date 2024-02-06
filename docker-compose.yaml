@@ -3,8 +3,6 @@ services:
     build:
       context: .
     container_name: server
-    ports:
-      - 8000:8000
     restart: always
     volumes:
       - ./core:/app
