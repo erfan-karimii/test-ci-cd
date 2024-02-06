@@ -133,6 +133,7 @@ MEDIA_URL = '/media/'
 
 STATICFILES_DIRS = [BASE_DIR / "static",]
 STATIC_ROOT = os.path.join(BASE_DIR,'static_root/')
+MEDIA_ROOT = "/vol/media"
 
 
 # Default primary key field type
