@@ -32,6 +32,7 @@ jobs:
               HostName $SSH_HOST
               USER $SSH_USER
               IdentityFile ~/.ssh/github
+              PubKeyAuthentication yes
               LogLevel ERROR
               StrictHostKeyChecking no
             END
