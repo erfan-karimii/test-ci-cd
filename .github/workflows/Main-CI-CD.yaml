@@ -14,10 +14,29 @@ jobs:
             run:  docker exec server bash -c "python3 manage.py test"
     simple_CD:
       name: Django CD
-      runs-on: ubuntu-latest
       needs:
         - simple_CI
+      runs-on: ubuntu-latest
       steps:
-        - name: echo sth
-          run: echo "B"      
+        - name: Configure SSH
+          env:
+            SSH_PRIVATE_KEY: ${{ secrets.SSH_HOST }}
+            SSH_HOST: ${{ secrets.SSH_HOST }}
+            SSH_USER: ${{ secrets.SSH_USER }}
+          run: |
+            mkdir -p ~/.ssh/
+            echo "$SSH_PRIVATE_KEY" > ~/.ssh/github
+            chmod 600 ~/.ssh/github
+            cat >>~/.ssh/config <<END
+            Host target
+              HostName $SSH_HOST
+              USER $SSH_USER
+              IdentifyFile ~/.ssh/github
+              LogLevel ERROR
+              StrictHostKeyChecking no
+            End
+        - name: Run Deploy
+          run: |
+            ssh target "docker-compose down && git pull && docker-compose build && docker-compose up -d --forece-recreate"
+
       
