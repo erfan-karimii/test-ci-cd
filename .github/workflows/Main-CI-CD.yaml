@@ -31,10 +31,10 @@ jobs:
             Host target
               HostName $SSH_HOST
               USER $SSH_USER
-              IdentifyFile ~/.ssh/github
+              IdentityFile ~/.ssh/github
               LogLevel ERROR
               StrictHostKeyChecking no
-            End
+            END
         - name: Run Deploy
           run: |
             ssh target "docker-compose down && git pull && docker-compose build && docker-compose up -d --forece-recreate"
